@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\User;
+use App\Models\Plan;
 
-class UserFactory extends Factory
+class PlanFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Plan::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +22,11 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->safeEmail(),
-            'password' => $this->faker->password(),
-            'facebook' => $this->faker->regexify('[A-Za-z0-9]{255}'),
-            'whatsapp' => $this->faker->regexify('[A-Za-z0-9]{15}'),
-            'phone' => $this->faker->phoneNumber(),
+            'description' => $this->faker->text(),
+            'price' => $this->faker->randomFloat(0, 0, 9999999999.),
+            'accounts_count' => $this->faker->numberBetween(-10000, 10000),
+            'old_accounts' => $this->faker->boolean(),
+            'photo' => $this->faker->regexify('[A-Za-z0-9]{2048}'),
             'website' => $this->faker->regexify('[A-Za-z0-9]{255}'),
         ];
     }

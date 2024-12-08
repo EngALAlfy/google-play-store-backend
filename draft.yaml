@@ -1,64 +1,63 @@
 models:
   User:
-    name: string:max=255
-    email: string:unique|email|max=255
-    password: string:confirmed|min=8
-    role: enum:buyer,seller,reseller,broker,admin
-    photo: string:nullable|max=2048
-    facebook: string:nullable|max=255
-    whatsapp: string:nullable|max=15|regex:/^\+?[0-9]+$/
-    phone: string:nullable|max=15|regex:/^\+?[0-9]+$/
-    website: string:nullable|url|max=255
-    status: enum:active,inactive,suspended
+    name: string:255
+    email: string:255 unique email
+    password: string confirmed
+    facebook: string:255 nullable
+    whatsapp: string:15 regex:/^\+?[0-9]+$/ nullable
+    phone: string:15 regex:/^\+?[0-9]+$/ nullable
+    website: string:255 url nullable
     timestamps: true
+    relationships:
+        hasMany: accounts,orders
 
   Account:
-    user_id: foreignId:users|exists:users,id
-    account_type: enum:credit,debit
-    balance: float|min=0
+    seller_id: foreign:users exists:users,id
+    creation_date: date
+    apps_count: integer
+    description: text nullable
+    price: float
+    photo: string:2048 nullable
+    website: string:255 url nullable
     timestamps: true
+    relationships:
+      belongsTo: user
+      hasMany: orderItems
 
   Plan:
-    name: string:max=255
-    description: text:nullable
-    price: float|min=0
-    accounts_count: integer|min=0
+    name: string:255
+    description: text nullable
+    price: float
+    accounts_count: integer
     old_accounts: boolean
-    status: enum:active,inactive
+    photo: string:2048 nullable
+    website: string:255 url nullable
     timestamps: true
 
   Order:
-    buyer_id: foreignId:users|exists:users,id
-    seller_id: foreignId:users|nullable|exists:users,id
-    account_id: foreignId:accounts|nullable|exists:accounts,id
-    broker_id: foreignId:users|nullable|exists:users,id
-    total_price: float|min=0
-    status: enum:pending,completed,cancelled,refunded
+    buyer_id: foreign:users exists:users,id
+    seller_id: foreign:users nullable exists:users,id
+    account_id: foreign:accounts nullable exists:accounts,id
+    broker_id: foreign:users nullable exists:users,id
+    total_price: float
+    description: text nullable
+    photo: string:2048 nullable
+    website: string:255 url nullable
     timestamps: true
+    relationships:
+      belongsTo: user
+      hasMany: orderItems
 
   OrderItem:
-    order_id: foreignId:orders|exists:orders,id
-    account_id: foreignId:accounts|exists:accounts,id
-    price: float|min=0
+    order_id: foreign:orders exists:orders,id
+    account_id: foreign:accounts exists:accounts,id
+    price: float
+    description: text nullable
+    photo: string:2048 nullable
+    website: string:255 url nullable
     timestamps: true
-
-relationships:
-  User:
-    hasMany: accounts,orders
-
-  Account:
-    belongsTo: user
-    hasMany: orderItems
-
-  Plan:
-    none: true
-
-  Order:
-    belongsTo: user
-    hasMany: orderItems
-
-  OrderItem:
-    belongsTo: order,account
+    relationships:
+      belongsTo: order,account
 
 controllers:
   User:
@@ -93,7 +92,7 @@ controllers:
       response: 200 with:accounts
 
     store:
-      validate: user_id, account_type, balance
+      validate: seller_id, creation_date, apps_count, description, price
       save: account
       response: 201 with:account
 
@@ -103,7 +102,7 @@ controllers:
 
     update:
       find: id
-      validate: account_type, balance
+      validate: creation_date, apps_count, description, price
       update: account
       response: 200 with:account
 
@@ -118,7 +117,7 @@ controllers:
       response: 200 with:plans
 
     store:
-      validate: name, price, status
+      validate: name, description, price, accounts_count, old_accounts
       save: plan
       response: 201 with:plan
 
@@ -128,7 +127,7 @@ controllers:
 
     update:
       find: id
-      validate: name, price, status
+      validate: name, description, price, accounts_count, old_accounts
       update: plan
       response: 200 with:plan
 
@@ -143,7 +142,7 @@ controllers:
       response: 200 with:orders
 
     store:
-      validate: buyer_id, total_price, status
+      validate: buyer_id, seller_id, account_id, broker_id, total_price, description
       save: order
       dispatch: ProcessOrder with:order
       fire: NewOrderPlaced with:order
@@ -155,7 +154,7 @@ controllers:
 
     update:
       find: id
-      validate: total_price, status
+      validate: total_price, description
       update: order
       response: 200 with:order
 
@@ -166,7 +165,7 @@ controllers:
 
   OrderItem:
     store:
-      validate: order_id, account_id, price
+      validate: order_id, account_id, price, description
       save: orderItem
       response: 201 with:orderItem
 
