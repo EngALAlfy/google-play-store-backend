@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\Seller;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
@@ -24,6 +25,9 @@ final class AccountControllerTest extends TestCase
         $accounts = Account::factory()->count(3)->create();
 
         $response = $this->get(route('accounts.index'));
+
+        $response->assertOk();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -43,26 +47,29 @@ final class AccountControllerTest extends TestCase
         $seller = Seller::factory()->create();
         $creation_date = Carbon::parse($this->faker->date());
         $apps_count = $this->faker->numberBetween(-10000, 10000);
-        $description = $this->faker->text();
         $price = $this->faker->randomFloat(/** float_attributes **/);
+        $user = User::factory()->create();
 
         $response = $this->post(route('accounts.store'), [
             'seller_id' => $seller->id,
-            'creation_date' => $creation_date,
+            'creation_date' => $creation_date->toDateString(),
             'apps_count' => $apps_count,
-            'description' => $description,
             'price' => $price,
+            'user_id' => $user->id,
         ]);
 
         $accounts = Account::query()
             ->where('seller_id', $seller->id)
             ->where('creation_date', $creation_date)
             ->where('apps_count', $apps_count)
-            ->where('description', $description)
             ->where('price', $price)
+            ->where('user_id', $user->id)
             ->get();
         $this->assertCount(1, $accounts);
         $account = $accounts->first();
+
+        $response->assertCreated();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -72,6 +79,9 @@ final class AccountControllerTest extends TestCase
         $account = Account::factory()->create();
 
         $response = $this->get(route('accounts.show', $account));
+
+        $response->assertOk();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -89,33 +99,41 @@ final class AccountControllerTest extends TestCase
     public function update_behaves_as_expected(): void
     {
         $account = Account::factory()->create();
+        $seller = Seller::factory()->create();
         $creation_date = Carbon::parse($this->faker->date());
         $apps_count = $this->faker->numberBetween(-10000, 10000);
-        $description = $this->faker->text();
         $price = $this->faker->randomFloat(/** float_attributes **/);
+        $user = User::factory()->create();
 
         $response = $this->put(route('accounts.update', $account), [
-            'creation_date' => $creation_date,
+            'seller_id' => $seller->id,
+            'creation_date' => $creation_date->toDateString(),
             'apps_count' => $apps_count,
-            'description' => $description,
             'price' => $price,
+            'user_id' => $user->id,
         ]);
 
         $account->refresh();
 
+        $response->assertOk();
+        $response->assertJsonStructure([]);
+
+        $this->assertEquals($seller->id, $account->seller_id);
         $this->assertEquals($creation_date, $account->creation_date);
         $this->assertEquals($apps_count, $account->apps_count);
-        $this->assertEquals($description, $account->description);
         $this->assertEquals($price, $account->price);
+        $this->assertEquals($user->id, $account->user_id);
     }
 
 
     #[Test]
-    public function destroy_deletes(): void
+    public function destroy_deletes_and_responds_with(): void
     {
         $account = Account::factory()->create();
 
         $response = $this->delete(route('accounts.destroy', $account));
+
+        $response->assertNoContent();
 
         $this->assertModelMissing($account);
     }

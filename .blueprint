@@ -3,7 +3,6 @@ created:
     - app/Http/Controllers/AccountController.php
     - app/Http/Controllers/PlanController.php
     - app/Http/Controllers/OrderController.php
-    - app/Http/Controllers/OrderItemController.php
     - database/factories/UserFactory.php
     - database/factories/AccountFactory.php
     - database/factories/PlanFactory.php
@@ -18,14 +17,20 @@ created:
     - tests/Feature/Http/Controllers/AccountControllerTest.php
     - tests/Feature/Http/Controllers/PlanControllerTest.php
     - tests/Feature/Http/Controllers/OrderControllerTest.php
-    - tests/Feature/Http/Controllers/OrderItemControllerTest.php
+    - app/Http/Resources/UserResource.php
+    - app/Http/Resources/AccountCollection.php
+    - app/Http/Resources/AccountResource.php
+    - app/Http/Resources/PlanCollection.php
+    - app/Http/Resources/PlanResource.php
+    - app/Http/Resources/OrderCollection.php
+    - app/Http/Resources/OrderResource.php
 updated:
     - database/migrations\0001_01_01_000000_create_users_table.php
     - database/migrations\2024_12_08_184913_create_accounts_table.php
     - database/migrations\2024_12_08_184914_create_plans_table.php
     - database/migrations\2024_12_08_184915_create_orders_table.php
     - database/migrations\2024_12_08_184916_create_order_items_table.php
-    - routes/web.php
+    - routes/api.php
 models:
     User: { name: 'string:255', email: 'string:255 unique email', password: 'string confirmed', facebook: 'string:255 nullable', whatsapp: 'string:15 regex:/^\+?[0-9]+$/ nullable', phone: 'string:15 regex:/^\+?[0-9]+$/ nullable', website: 'string:255 url nullable', timestamps: timestamps, relationships: { hasMany: 'accounts,orders' } }
     Account: { seller_id: 'foreign:users exists:users,id', creation_date: date, apps_count: integer, description: 'text nullable', price: float, photo: 'string:2048 nullable', website: 'string:255 url nullable', timestamps: timestamps, relationships: { belongsTo: user, hasMany: orderItems } }

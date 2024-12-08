@@ -22,6 +22,9 @@ final class PlanControllerTest extends TestCase
         $plans = Plan::factory()->count(3)->create();
 
         $response = $this->get(route('plans.index'));
+
+        $response->assertOk();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -39,14 +42,12 @@ final class PlanControllerTest extends TestCase
     public function store_saves(): void
     {
         $name = $this->faker->name();
-        $description = $this->faker->text();
         $price = $this->faker->randomFloat(/** float_attributes **/);
         $accounts_count = $this->faker->numberBetween(-10000, 10000);
         $old_accounts = $this->faker->boolean();
 
         $response = $this->post(route('plans.store'), [
             'name' => $name,
-            'description' => $description,
             'price' => $price,
             'accounts_count' => $accounts_count,
             'old_accounts' => $old_accounts,
@@ -54,13 +55,15 @@ final class PlanControllerTest extends TestCase
 
         $plans = Plan::query()
             ->where('name', $name)
-            ->where('description', $description)
             ->where('price', $price)
             ->where('accounts_count', $accounts_count)
             ->where('old_accounts', $old_accounts)
             ->get();
         $this->assertCount(1, $plans);
         $plan = $plans->first();
+
+        $response->assertCreated();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -70,6 +73,9 @@ final class PlanControllerTest extends TestCase
         $plan = Plan::factory()->create();
 
         $response = $this->get(route('plans.show', $plan));
+
+        $response->assertOk();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -88,14 +94,12 @@ final class PlanControllerTest extends TestCase
     {
         $plan = Plan::factory()->create();
         $name = $this->faker->name();
-        $description = $this->faker->text();
         $price = $this->faker->randomFloat(/** float_attributes **/);
         $accounts_count = $this->faker->numberBetween(-10000, 10000);
         $old_accounts = $this->faker->boolean();
 
         $response = $this->put(route('plans.update', $plan), [
             'name' => $name,
-            'description' => $description,
             'price' => $price,
             'accounts_count' => $accounts_count,
             'old_accounts' => $old_accounts,
@@ -103,8 +107,10 @@ final class PlanControllerTest extends TestCase
 
         $plan->refresh();
 
+        $response->assertOk();
+        $response->assertJsonStructure([]);
+
         $this->assertEquals($name, $plan->name);
-        $this->assertEquals($description, $plan->description);
         $this->assertEquals($price, $plan->price);
         $this->assertEquals($accounts_count, $plan->accounts_count);
         $this->assertEquals($old_accounts, $plan->old_accounts);
@@ -112,11 +118,13 @@ final class PlanControllerTest extends TestCase
 
 
     #[Test]
-    public function destroy_deletes(): void
+    public function destroy_deletes_and_responds_with(): void
     {
         $plan = Plan::factory()->create();
 
         $response = $this->delete(route('plans.destroy', $plan));
+
+        $response->assertNoContent();
 
         $this->assertModelMissing($plan);
     }

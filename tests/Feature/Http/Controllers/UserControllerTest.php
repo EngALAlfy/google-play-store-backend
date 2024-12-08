@@ -2,11 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Events\NewUserRegistered;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Event;
 use JMac\Testing\Traits\AdditionalAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -24,6 +22,9 @@ final class UserControllerTest extends TestCase
         $users = User::factory()->count(3)->create();
 
         $response = $this->get(route('users.index'));
+
+        $response->assertOk();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -44,8 +45,6 @@ final class UserControllerTest extends TestCase
         $email = $this->faker->safeEmail();
         $password = $this->faker->password();
 
-        Event::fake();
-
         $response = $this->post(route('users.store'), [
             'name' => $name,
             'email' => $email,
@@ -60,9 +59,8 @@ final class UserControllerTest extends TestCase
         $this->assertCount(1, $users);
         $user = $users->first();
 
-        Event::assertDispatched(NewUserRegistered::class, function ($event) use ($user) {
-            return $event->user->is($user);
-        });
+        $response->assertCreated();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -72,6 +70,9 @@ final class UserControllerTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->get(route('users.show', $user));
+
+        $response->assertOk();
+        $response->assertJsonStructure([]);
     }
 
 
@@ -101,6 +102,9 @@ final class UserControllerTest extends TestCase
 
         $user->refresh();
 
+        $response->assertOk();
+        $response->assertJsonStructure([]);
+
         $this->assertEquals($name, $user->name);
         $this->assertEquals($email, $user->email);
         $this->assertEquals($password, $user->password);
@@ -108,11 +112,13 @@ final class UserControllerTest extends TestCase
 
 
     #[Test]
-    public function destroy_deletes(): void
+    public function destroy_deletes_and_responds_with(): void
     {
         $user = User::factory()->create();
 
         $response = $this->delete(route('users.destroy', $user));
+
+        $response->assertNoContent();
 
         $this->assertModelMissing($user);
     }

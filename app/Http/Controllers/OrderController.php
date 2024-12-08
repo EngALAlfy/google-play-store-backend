@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NewOrderPlaced;
 use App\Http\Requests\OrderStoreRequest;
 use App\Http\Requests\OrderUpdateRequest;
-use App\Jobs\ProcessOrder;
+use App\Http\Resources\OrderCollection;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,34 +15,33 @@ class OrderController extends Controller
     public function index(Request $request): Response
     {
         $orders = Order::all();
+
+        return new OrderCollection($orders);
     }
 
     public function store(OrderStoreRequest $request): Response
     {
         $order = Order::create($request->validated());
 
-        ProcessOrder::dispatch($order);
-
-        NewOrderPlaced::dispatch($order);
+        return new OrderResource($order);
     }
 
     public function show(Request $request, Order $order): Response
     {
-        $order = Order::find($id);
+        return $200 with:order;
     }
 
     public function update(OrderUpdateRequest $request, Order $order): Response
     {
-        $order = Order::find($id);
-
-
         $order->update($request->validated());
+
+        return new OrderResource($order);
     }
 
     public function destroy(Request $request, Order $order): Response
     {
-        $order = Order::find($id);
-
         $order->delete();
+
+        return response()->noContent();
     }
 }
