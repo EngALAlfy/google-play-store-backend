@@ -1,0 +1,176 @@
+models:
+  User:
+    name: string:max=255
+    email: string:unique|email|max=255
+    password: string:confirmed|min=8
+    role: enum:buyer,seller,reseller,broker,admin
+    photo: string:nullable|max=2048
+    facebook: string:nullable|max=255
+    whatsapp: string:nullable|max=15|regex:/^\+?[0-9]+$/
+    phone: string:nullable|max=15|regex:/^\+?[0-9]+$/
+    website: string:nullable|url|max=255
+    status: enum:active,inactive,suspended
+    timestamps: true
+
+  Account:
+    user_id: foreignId:users|exists:users,id
+    account_type: enum:credit,debit
+    balance: float|min=0
+    timestamps: true
+
+  Plan:
+    name: string:max=255
+    description: text:nullable
+    price: float|min=0
+    accounts_count: integer|min=0
+    old_accounts: boolean
+    status: enum:active,inactive
+    timestamps: true
+
+  Order:
+    buyer_id: foreignId:users|exists:users,id
+    seller_id: foreignId:users|nullable|exists:users,id
+    account_id: foreignId:accounts|nullable|exists:accounts,id
+    broker_id: foreignId:users|nullable|exists:users,id
+    total_price: float|min=0
+    status: enum:pending,completed,cancelled,refunded
+    timestamps: true
+
+  OrderItem:
+    order_id: foreignId:orders|exists:orders,id
+    account_id: foreignId:accounts|exists:accounts,id
+    price: float|min=0
+    timestamps: true
+
+relationships:
+  User:
+    hasMany: accounts,orders
+
+  Account:
+    belongsTo: user
+    hasMany: orderItems
+
+  Plan:
+    none: true
+
+  Order:
+    belongsTo: user
+    hasMany: orderItems
+
+  OrderItem:
+    belongsTo: order,account
+
+controllers:
+  User:
+    index:
+      query: all
+      response: 200 with:users
+
+    store:
+      validate: name, email, password, role
+      save: user
+      fire: NewUserRegistered with:user
+      response: 201 with:user
+
+    show:
+      find: id
+      response: 200 with:user
+
+    update:
+      find: id
+      validate: name, email, role
+      update: user
+      response: 200 with:user
+
+    destroy:
+      find: id
+      delete: user
+      response: 204
+
+  Account:
+    index:
+      query: all
+      response: 200 with:accounts
+
+    store:
+      validate: user_id, account_type, balance
+      save: account
+      response: 201 with:account
+
+    show:
+      find: id
+      response: 200 with:account
+
+    update:
+      find: id
+      validate: account_type, balance
+      update: account
+      response: 200 with:account
+
+    destroy:
+      find: id
+      delete: account
+      response: 204
+
+  Plan:
+    index:
+      query: all
+      response: 200 with:plans
+
+    store:
+      validate: name, price, status
+      save: plan
+      response: 201 with:plan
+
+    show:
+      find: id
+      response: 200 with:plan
+
+    update:
+      find: id
+      validate: name, price, status
+      update: plan
+      response: 200 with:plan
+
+    destroy:
+      find: id
+      delete: plan
+      response: 204
+
+  Order:
+    index:
+      query: all
+      response: 200 with:orders
+
+    store:
+      validate: buyer_id, total_price, status
+      save: order
+      dispatch: ProcessOrder with:order
+      fire: NewOrderPlaced with:order
+      response: 201 with:order
+
+    show:
+      find: id
+      response: 200 with:order
+
+    update:
+      find: id
+      validate: total_price, status
+      update: order
+      response: 200 with:order
+
+    destroy:
+      find: id
+      delete: order
+      response: 204
+
+  OrderItem:
+    store:
+      validate: order_id, account_id, price
+      save: orderItem
+      response: 201 with:orderItem
+
+    destroy:
+      find: id
+      delete: orderItem
+      response: 204
