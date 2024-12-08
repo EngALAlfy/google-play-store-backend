@@ -25,7 +25,6 @@
 - [📍 Overview](#-overview)
 - [👾 Features](#-features)
 - [📁 Project Structure](#-project-structure)
-  - [📂 Project Index](#-project-index)
 - [🚀 Getting Started](#-getting-started)
   - [☑️ Prerequisites](#-prerequisites)
   - [⚙️ Installation](#-installation)
@@ -37,16 +36,51 @@
 - [🙌 Acknowledgments](#-acknowledgments)
 
 ---
-
 ## 📍 Overview
 
-<code>❯ REPLACE-ME</code>
+This project is a **Google Play Accounts Store** backend system designed to facilitate the secure listing, management, and transactions of Google Play accounts. The platform enables buyers, sellers, resellers, and brokers to engage seamlessly, with role-based access and efficient order processing. Administrators oversee the platform to ensure compliance and smooth operations.
+
+The system includes modules for authentication, account management, transaction tracking, and analytics, offering a robust solution for managing a specialized marketplace.
 
 ---
 
 ## 👾 Features
 
-<code>❯ REPLACE-ME</code>
+- **Role-Based Access Control**  
+  Supports multiple user roles: buyers, sellers, resellers, brokers, and administrators, each with tailored access permissions and features.
+
+- **Secure Authentication**  
+  JWT-based authentication ensures secure and reliable login/logout processes.
+
+- **Account Listing & Management**  
+  Sellers can list Google Play accounts with detailed information and manage their inventory.
+
+- **Bulk Purchase for Resellers**  
+  Special discounts and bulk-buying options for resellers.
+
+- **Broker Facilitation**  
+  Brokers can connect buyers and sellers and earn commissions on successful deals.
+
+- **Order Processing & Tracking**  
+  Efficient order creation, tracking, and management for buyers and sellers.
+
+- **Dashboard Statistics**  
+  Real-time analytics for admins to monitor user activity, revenue, and transactions.
+
+- **Flexible Payment Options**  
+  Integration with payment gateways for easy and secure payments.
+
+- **Subscription Plans**  
+  Manage premium plans offering additional features or benefits.
+
+- **Admin Controls**  
+  Comprehensive tools for administrators to oversee and manage users, disputes, and platform configurations.
+
+- **Scalable Architecture**  
+  Built to support high traffic and a growing user base with modular components.
+
+- **API-Driven Design**  
+  RESTful API endpoints for easy integration and extensibility.
 
 ---
 
@@ -136,302 +170,6 @@
             └── ExampleTest.php
 ```
 
-
-### 📂 Project Index
-<details open>
-	<summary><b><code>GOOGLE-PLAY-STORE-BACKEND/</code></b></summary>
-	<details> <!-- __root__ Submodule -->
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/postcss.config.js'>postcss.config.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/package-lock.json'>package-lock.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/artisan'>artisan</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/tailwind.config.js'>tailwind.config.js</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/composer.json'>composer.json</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- bootstrap Submodule -->
-		<summary><b>bootstrap</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/bootstrap/providers.php'>providers.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/bootstrap/app.php'>app.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- config Submodule -->
-		<summary><b>config</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/filesystems.php'>filesystems.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/logging.php'>logging.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/auth.php'>auth.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/sanctum.php'>sanctum.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/cors.php'>cors.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/mail.php'>mail.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/session.php'>session.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/cache.php'>cache.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/services.php'>services.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/app.php'>app.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/queue.php'>queue.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/config/database.php'>database.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- routes Submodule -->
-		<summary><b>routes</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/routes/auth.php'>auth.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/routes/api.php'>api.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/routes/web.php'>web.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/routes/console.php'>console.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- public Submodule -->
-		<summary><b>public</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/public/.htaccess'>.htaccess</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/public/index.php'>index.php</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/public/robots.txt'>robots.txt</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- app Submodule -->
-		<summary><b>app</b></summary>
-		<blockquote>
-			<details>
-				<summary><b>Models</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Models/User.php'>User.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>Http</b></summary>
-				<blockquote>
-					<details>
-						<summary><b>Controllers</b></summary>
-						<blockquote>
-							<table>
-							<tr>
-								<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Controllers/Controller.php'>Controller.php</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							</table>
-							<details>
-								<summary><b>Auth</b></summary>
-								<blockquote>
-									<table>
-									<tr>
-										<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Controllers/Auth/RegisteredUserController.php'>RegisteredUserController.php</a></b></td>
-										<td><code>❯ REPLACE-ME</code></td>
-									</tr>
-									<tr>
-										<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Controllers/Auth/AuthenticatedSessionController.php'>AuthenticatedSessionController.php</a></b></td>
-										<td><code>❯ REPLACE-ME</code></td>
-									</tr>
-									<tr>
-										<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Controllers/Auth/NewPasswordController.php'>NewPasswordController.php</a></b></td>
-										<td><code>❯ REPLACE-ME</code></td>
-									</tr>
-									<tr>
-										<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Controllers/Auth/VerifyEmailController.php'>VerifyEmailController.php</a></b></td>
-										<td><code>❯ REPLACE-ME</code></td>
-									</tr>
-									<tr>
-										<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Controllers/Auth/PasswordResetLinkController.php'>PasswordResetLinkController.php</a></b></td>
-										<td><code>❯ REPLACE-ME</code></td>
-									</tr>
-									<tr>
-										<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Controllers/Auth/EmailVerificationNotificationController.php'>EmailVerificationNotificationController.php</a></b></td>
-										<td><code>❯ REPLACE-ME</code></td>
-									</tr>
-									</table>
-								</blockquote>
-							</details>
-						</blockquote>
-					</details>
-					<details>
-						<summary><b>Middleware</b></summary>
-						<blockquote>
-							<table>
-							<tr>
-								<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Middleware/EnsureEmailIsVerified.php'>EnsureEmailIsVerified.php</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
-							</tr>
-							</table>
-						</blockquote>
-					</details>
-					<details>
-						<summary><b>Requests</b></summary>
-						<blockquote>
-							<details>
-								<summary><b>Auth</b></summary>
-								<blockquote>
-									<table>
-									<tr>
-										<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Http/Requests/Auth/LoginRequest.php'>LoginRequest.php</a></b></td>
-										<td><code>❯ REPLACE-ME</code></td>
-									</tr>
-									</table>
-								</blockquote>
-							</details>
-						</blockquote>
-					</details>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>Providers</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/app/Providers/AppServiceProvider.php'>AppServiceProvider.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-		</blockquote>
-	</details>
-	<details> <!-- database Submodule -->
-		<summary><b>database</b></summary>
-		<blockquote>
-			<details>
-				<summary><b>seeders</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/database/seeders/DatabaseSeeder.php'>DatabaseSeeder.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>factories</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/database/factories/UserFactory.php'>UserFactory.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-			<details>
-				<summary><b>migrations</b></summary>
-				<blockquote>
-					<table>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/database/migrations/0001_01_01_000000_create_users_table.php'>0001_01_01_000000_create_users_table.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/database/migrations/0001_01_01_000001_create_cache_table.php'>0001_01_01_000001_create_cache_table.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/database/migrations/0001_01_01_000002_create_jobs_table.php'>0001_01_01_000002_create_jobs_table.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					<tr>
-						<td><b><a href='https://github.com/EngALAlfy/google-play-store-backend/blob/master/database/migrations/2024_12_08_112945_create_personal_access_tokens_table.php'>2024_12_08_112945_create_personal_access_tokens_table.php</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
-					</tr>
-					</table>
-				</blockquote>
-			</details>
-		</blockquote>
-	</details>
-</details>
-
 ---
 ## 🚀 Getting Started
 
@@ -462,13 +200,6 @@ Install google-play-store-backend using one of the following methods:
 3. Install the project dependencies:
 
 
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
-
-```sh
-❯ echo 'INSERT-INSTALL-COMMAND-HERE'
-```
-
-
 **Using `composer`** &nbsp; [<img align="center" src="https://img.shields.io/badge/PHP-777BB4.svg?style={badge_style}&logo=php&logoColor=white" />](https://www.php.net/)
 
 ```sh
@@ -480,28 +211,18 @@ Install google-play-store-backend using one of the following methods:
 
 ### 🤖 Usage
 Run google-play-store-backend using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
-
-```sh
-❯ echo 'INSERT-RUN-COMMAND-HERE'
-```
-
-
 **Using `composer`** &nbsp; [<img align="center" src="https://img.shields.io/badge/PHP-777BB4.svg?style={badge_style}&logo=php&logoColor=white" />](https://www.php.net/)
 
 ```sh
-❯ php {entrypoint}
+❯ php artisan migrate --seed
 ```
 
+```sh
+❯ php artisan serv
+```
 
 ### 🧪 Testing
 Run the test suite using the following command:
-**Using `npm`** &nbsp; [<img align="center" src="" />]()
-
-```sh
-❯ echo 'INSERT-TEST-COMMAND-HERE'
-```
-
 
 **Using `composer`** &nbsp; [<img align="center" src="https://img.shields.io/badge/PHP-777BB4.svg?style={badge_style}&logo=php&logoColor=white" />](https://www.php.net/)
 
@@ -509,23 +230,13 @@ Run the test suite using the following command:
 ❯ vendor/bin/phpunit
 ```
 
-
----
-## 📌 Project Roadmap
-
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
----
-
 ## 🔰 Contributing
 
 - **💬 [Join the Discussions](https://github.com/EngALAlfy/google-play-store-backend/discussions)**: Share your insights, provide feedback, or ask questions.
 - **🐛 [Report Issues](https://github.com/EngALAlfy/google-play-store-backend/issues)**: Submit bugs found or log feature requests for the `google-play-store-backend` project.
 - **💡 [Submit Pull Requests](https://github.com/EngALAlfy/google-play-store-backend/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 
-<details closed>
+<details>
 <summary>Contributing Guidelines</summary>
 
 1. **Fork the Repository**: Start by forking the project repository to your github account.
@@ -550,7 +261,7 @@ Run the test suite using the following command:
 8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
 </details>
 
-<details closed>
+<details>
 <summary>Contributor Graph</summary>
 <br>
 <p align="left">
@@ -559,17 +270,5 @@ Run the test suite using the following command:
    </a>
 </p>
 </details>
-
----
-
-## 🎗 License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
-## 🙌 Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
 
 ---
